@@ -1,3 +1,5 @@
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faLocation, faPhone, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons/faBook";
@@ -7,6 +9,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Image from "next/image";
 import Link from "next/link";
+
+
+interface Product{
+  name : string,
+  category : string,
+  address : string,
+  phone : string,
+  email : string,
+  gender : string,
+  description : string
+}
 
 let categories = [
   {name : 'Electrician'},
@@ -19,17 +32,17 @@ let categories = [
 ]
 
 let products = [
-  {name : 'Budi Setiawan', category : 'AC' },
-  {name : 'Rudi Tabuti', category : 'AC'},
-  {name : 'Laksman', category : 'AC'},
-  {name : 'Rio Aditya', category : 'AC'},
-  {name : 'Rahmat', category : 'AC'},
-  {name : 'Ken', category : 'AC'},
-  {name : 'Kyo', category : 'AC'},
+  {name : 'Budi Setiawan', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan' },
+  {name : 'Rudi Tabuti', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan'},
+  {name : 'Laksman', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan'},
+  {name : 'Rio Aditya', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan'},
+  {name : 'Rahmat', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan'},
+  {name : 'Ken', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan'},
+  {name : 'Kyo', category : 'AC', address : 'Br. Suda kanginan, kediri, tabanan', phone : '0812344747', email : 'budiawan@gmail.com', gender : 'male', description : 'saya sudah mulai belajar tentang komputer mulai sejak umur saya 3 bulan'},
 ]
-const Categories = ({name} : {name : string}) => {
+const Categories = ({name, key} : {name : string, key:number}) => {
 return (
-  <div className="px-3 justify-center">
+  <div key={key} className="px-3 justify-center snap-center">
             <div className="w-16 h-16 rounded-full bg-slate-200 flex flex-wrap items-center justify-center">
 <FontAwesomeIcon width={25} icon={faPhone}/>
             </div>
@@ -38,8 +51,12 @@ return (
 )
 }
 
-const Products = ({name, category} : {name : string, category:string}) =>{
+const Products = ({product, key} : {product : Product, key:number}) =>{
 return (
+  <div key={key} className="group w-[300px] h-[350px] perspective-800 group mx-auto">
+  <div className="md:backface-hidden md:transform transition duration-[1.0s] md:group-hover:rotate-y-180 
+      rounded-lg shadow-lg absolute t-0">
+   
   <Link href={"/detail"} className="shadow-lg bg-slate-50 rounded-md">
   <Image
   width={0}
@@ -51,11 +68,27 @@ alt="Picture of the author"
 />
   
   <div className="p-2">
-  <h5 className="font-bold">{category}</h5>
-  <h5 className="font-bold">{name}</h5>
+  <h5 className="font-bold">{product.category}</h5>
+  <h5 className="font-bold">{product.name}</h5>
   <p className="text-sm">star 4.5 | 8 people</p>
   </div>
   </Link>
+  </div>
+  <div className="hidden md:block backface-hidden md:transform transition duration-[1.0s] -rotate-y-180 md:group-hover:rotate-y-0 
+      rounded-lg shadow-lg absolute t-0">
+ <div className="p-4">
+  <h5 className="font-bold">{product.name}</h5>
+  <hr className="mb-4" />
+  <p className="text-sm"><span className="font-bold">Email</span> : {product.email}</p>
+  <p className="text-sm"><span className="font-bold">Address</span> : {product.address}</p>
+  <p className="text-sm"><span className="font-bold">Gender</span> : {product.gender}</p>
+  <p className="text-sm"><span className="font-bold">Description</span> : {product.description}</p>
+  <div className=" flex items-center justify-center my-4">
+  <Link href={"/detail"} className="bg-green-500 text-white px-3 py-2 rounded-lg">Detail</Link>
+  </div>
+  </div>
+  </div>
+</div>
 )
 }
 
@@ -64,51 +97,7 @@ export default function Home() {
     <>
    <main className="w-full">
     {/* Profile */}
-    <div className="flex justify-between p-4">
-      <div className="flex">
-        <div className="">
-        <Image
-        width={0}
-        height={0}
-        sizes="100vw"
-        className="w-10 h-10 rounded-full bg-slate-500"
-      src="https://media.istockphoto.com/id/1476170969/id/foto/potret-pemuda-siap-kerja-konsep-bisnis.jpg?s=1024x1024&w=is&k=20&c=4COVCz0wDi5Jo2cxQGOaA_I-fm2cy1iy9OWwx56R1xs="
-      alt="Picture of the author"
-    />
-        </div>
-        <div className="ml-4">
-          <p className="text-sm">Welcome !</p>
-          <p className="text-black">Budi Santoso</p>
-        </div>
-      </div>
-      
-      <div className="md:hidden">
-      <FontAwesomeIcon width={30} icon={faHeart} />
-      </div>
-      <div className="hidden md:grid grid-cols-3 gap-4">
-      <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-      <FontAwesomeIcon width={25} icon={faHome} />
-      </div>
-    <p className="text-center">Home</p>
-    </div>
-   
-    <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-    <FontAwesomeIcon width={25} icon={faHeart} />
-    </div>
-    <p className="text-center">Favorit</p>
-    
-    </div>
-    <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-    <FontAwesomeIcon width={25} icon={faBook} />
-    </div>
-    <p className="text-center">History</p>
-    </div>
-      </div>
-    </div>
-
+    <Header/>
 
     <div className="min-h-screen">
 
@@ -118,14 +107,14 @@ export default function Home() {
         <FontAwesomeIcon width={25} icon={faLocation}  />
       </div>
       <select className="p-2 focus:outline-none border-b-2 w-full" name="" id="">
-          <option className="my-2" value="">{"<--Select Location-->"}</option>
+          <option className="my-2" value="">{"< - - Select Location - - >"}</option>
           <option className="my-2" value="">{"Kediri"}</option>
           <option className="my-2" value="">{"Belalang"}</option>
         </select>
      </div>
 
     {/* Searching */}
-    <div className="sticky top-0 left-0 py-4 bg-white w-full">
+    <div className="sticky top-0 left-0 py-4 bg-white w-full z-50">
       <div className="flex bg-slate-100 mx-4 my-2 p-4 rounded-md shadow-lg">
           <div className="h-4 w-4 mr-3">
           <FontAwesomeIcon width={20} icon={faSearch} />
@@ -135,15 +124,15 @@ export default function Home() {
 
       <div className="w-full p-4 hidden md:grid grid-cols-2 gap-3">
         <select className="p-2 flex flex-row focus:outline-none border-b-2" name="" id="">
-          <option className="my-2" value="">{"<--Select Category-->"}</option>
+          <option className="my-2" value="">{"< - - Select Category - - >"}</option>
           {categories && categories.map((item, key)=>(
-                    <option className="my-2" value="">{item.name}</option>
+                    <option key={key} className="my-2" value="">{item.name}</option>
 
         ))}
         </select>
 
         <select className="p-2 flex flex-row focus:outline-none border-b-2" name="" id="">
-          <option className="my-2" value="">{"<--Select Location-->"}</option>
+          <option className="my-2" value="">{"< - - Select Location - - >"}</option>
           
         </select>
       </div>
@@ -166,9 +155,9 @@ export default function Home() {
 
 
       {/* categori */}
-      <div className="overflow-x-scroll flex flex-row my-4 w-full md:hidden">
+      <div className="snap-x snap-mandatory overflow-x-scroll flex flex-row my-4 w-full md:hidden">
         {categories && categories.map((item, key)=>(
-          <Categories name={item.name} />
+          <Categories key={key} name={item.name} />
         ))}
         
        
@@ -196,7 +185,7 @@ export default function Home() {
       {/* product */}
       <div className="md:grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 w-full p-4">
       {products && products.map((item, key)=>(
-        <Products name={item.name} category={item.category} />
+        <Products key={key} product={item} />
       ))
 
       } 
@@ -206,36 +195,7 @@ export default function Home() {
 
 
 {/* Footer Menu */}
-      <div className="sticky bottom-0 left-0 bg-slate-100 w-full grid grid-cols-4 gap-2 border-t md:hidden">
-    <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-      <FontAwesomeIcon width={25} icon={faHome} />
-      </div>
-    <p className="text-center">Home</p>
-    </div>
-   
-    <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-    <FontAwesomeIcon width={25} icon={faHeart} />
-    </div>
-    <p className="text-center">Favorit</p>
-    
-    </div>
-    <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-    <FontAwesomeIcon width={25} icon={faBook} />
-    </div>
-    <p className="text-center">History</p>
-    </div>
-    
-    <div className="my-3">
-      <div className="flex flex-wrap items-center justify-center">
-    <FontAwesomeIcon width={25} icon={faUser} />
-    </div>
-    <p className="text-center">Profile</p>
-    
-    </div>
-      </div>
+    <Footer/>
    </main>
    </>
   );
