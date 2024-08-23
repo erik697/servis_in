@@ -30,9 +30,9 @@ export default function Home() {
     </div>
       {lastSearch && lastSearch.map((item, key)=>
       (
-        <button className="flex p-4" onClick={()=>{setSearch(item)}}>
+        <button className="flex p-4" onClick={()=>{setSearch(item)}} key={key}>
           <FontAwesomeIcon icon={faClockRotateLeft} width={20}/>
-          <div className="ml-4" key={key}>{item}</div>
+          <div className="ml-4" >{item}</div>
         </button>
       ))
 
