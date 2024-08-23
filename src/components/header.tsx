@@ -22,8 +22,8 @@ function Header() {
     />
         </Link>
         <div className="ml-4">
-          <p className="text-sm">Welcome !</p>
-          <p className="text-black">Budi Santoso</p>
+          <div className="text-sm">Welcome !</div>
+          <div className="text-black">Budi Santoso</div>
         </div>
       </div>
       
@@ -36,7 +36,7 @@ function Header() {
       <div className="flex flex-wrap items-center justify-center ">
       <FontAwesomeIcon width={25} icon={faHome} />
       </div>
-    <p className="text-center">Homes</p>
+    <div className="text-center">Homes</div>
     </div>
     </Link>
    
@@ -45,7 +45,7 @@ function Header() {
       <div className="flex flex-wrap items-center justify-center">
     <FontAwesomeIcon height={25} icon={faHeart} />
     </div>
-    <p className="text-center">Favorit</p>
+    <div className="text-center">Favorit</div>
     </div>
     </Link>
 
@@ -54,7 +54,7 @@ function Header() {
       <div className="flex flex-wrap items-center justify-center">
     <FontAwesomeIcon height={25} icon={faBook} />
     </div>
-    <p className="text-center">History</p>
+    <div className="text-center">History</div>
     </div>
     </Link>
       </div>

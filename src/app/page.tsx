@@ -1,7 +1,7 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faLocation, faPhone, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faLocation, faPhone, faSearch, faStar, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons/faBook";
 import { faHome } from "@fortawesome/free-solid-svg-icons/faHome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -70,7 +70,7 @@ alt="Picture of the author"
   <div className="p-2">
   <h5 className="font-bold">{product.category}</h5>
   <h5 className="font-bold">{product.name}</h5>
-  <p className="text-sm">star 4.5 | 8 people</p>
+  <p className="text-sm flex"><FontAwesomeIcon icon={faStar} color="orange" width={15} /> <span className="ml-2">4.5 | 8 people</span></p>
   </div>
   </Link>
   </div>
@@ -84,7 +84,7 @@ alt="Picture of the author"
   <p className="text-sm"><span className="font-bold">Gender</span> : {product.gender}</p>
   <p className="text-sm"><span className="font-bold">Description</span> : {product.description}</p>
   <div className=" flex items-center justify-center my-4">
-  <Link href={"/detail"} className="bg-green-500 text-white px-3 py-2 rounded-lg">Detail</Link>
+  <Link href={"/detail"} className="bg-green-500 text-white px-3 py-4 rounded-lg">Detail</Link>
   </div>
   </div>
   </div>
@@ -102,11 +102,11 @@ export default function Home() {
     <div className="min-h-screen">
 
   {/* District */}
-  <div className="flex md:hidden flex-row pt-4 px-4 justify-center items-center">
+  <div className="flex md:hidden flex-row pt-4 mx-4 justify-center items-center border-b-2">
       <div className="">
         <FontAwesomeIcon width={25} icon={faLocation}  />
       </div>
-      <select className="p-2 focus:outline-none border-b-2 w-full" name="" id="">
+      <select className="p-2 focus:outline-none w-full" name="" id="">
           <option className="my-2" value="">{"< - - Select Location - - >"}</option>
           <option className="my-2" value="">{"Kediri"}</option>
           <option className="my-2" value="">{"Belalang"}</option>
@@ -115,12 +115,12 @@ export default function Home() {
 
     {/* Searching */}
     <div className="sticky top-0 left-0 py-4 bg-white w-full z-50">
-      <div className="flex bg-slate-100 mx-4 my-2 p-4 rounded-md shadow-lg">
+      <Link href={'/search'} className="flex bg-slate-100 mx-4 my-2 p-4 rounded-md shadow-lg">
           <div className="h-4 w-4 mr-3">
           <FontAwesomeIcon width={20} icon={faSearch} />
           </div>
           <input type="text" className="bg-transparent focus:outline-none w-full" placeholder="Search" />
-      </div>
+      </Link>
 
       <div className="w-full p-4 hidden md:grid grid-cols-2 gap-3">
         <select className="p-2 flex flex-row focus:outline-none border-b-2" name="" id="">
@@ -174,7 +174,7 @@ export default function Home() {
       </div>
       <div className="overflow-x-scroll flex flex-row my-4 w-full">
         <div className="px-3 justify-center">
-            <div className="rounded-full py-1 px-2 border-2 border-black ">
+            <div className="rounded-full py-4 px-2 border-2 border-black ">
             <p>See All</p>
             </div>
         </div>

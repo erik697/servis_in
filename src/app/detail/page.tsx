@@ -30,7 +30,7 @@ export default function Home() {
 
    <main className="w-full">
  
- <Header/>
+ {/* <Header/> */}
 
     <div className="min-h-screen p-4">
       <div className="md:flex">
@@ -89,7 +89,7 @@ export default function Home() {
           <h3 className="text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, possimus explicabo consequatur in illum facilis, magnam nesciunt aliquid, dolor nobis dolorem error similique a. Reprehenderit voluptatibus adipisci non placeat dignissimos laborum sint nemo iure maxime ipsam dolorum blanditiis consequatur voluptas ea, dolores dicta rerum sequi dolorem, repudiandae cumque earum magnam?</h3>
         </div>
       </div>
-          <h3 className="font-bold text-lg mt-16 mb-2 md:text-3xl md:ml-4">Images List</h3>
+          {/* <h3 className="font-bold text-lg mt-16 mb-2 md:text-3xl md:ml-4">Images List</h3> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-10">
             <button className="h-[170px] md:h-[400px] w-[90%] mx-auto md:my-4 group overflow-clip shadow-lg" onClick={()=>setPopUp(true)}>
